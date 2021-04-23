@@ -1,3 +1,4 @@
+import 'package:dev_quiz/challenge/challange_page.dart';
 import 'package:dev_quiz/core/app_colors.dart';
 import 'package:dev_quiz/home/widgets/appbar/app_bar_widget.dart';
 import 'package:dev_quiz/home/widgets/level_button/level_button_widget.dart';
@@ -58,6 +59,14 @@ class _HomePageState extends State<HomePage> {
                     crossAxisCount: 2,
                     children: controller.quizzes!
                         .map((quiz) => QuizCardWidget(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => ChallengePage(
+                                              questions: quiz.questions,
+                                            )));
+                              },
                               title: quiz.title,
                               completed:
                                   "${quiz.questionAnswered} / ${quiz.questions.length}",
